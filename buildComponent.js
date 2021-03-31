@@ -31,15 +31,50 @@ function buildComponent(componentData, debug=false) {
         console.error(err)
     }
 
+    //Write JSX File
     if(componentData.files.includes("jsx")){
         var jsxFile = fs.createWriteStream(`${currentDir}/${componentName}.${fileEnding}`);
 
         jsxFile.once('open', (fd) => {
             jsxFile.write("import React from 'react'\n");
+            //Add the scss
+            if(componentData.files.includes("scss")){
+                jsxFile.write(`'./${componentName}.scss'\n`);
+            }
+            //Add the css
+            if(componentData.files.includes("css")){
+                jsxFile.write(`'./${componentName}.css'\n\n `);
+            }
         
+            //Create the component
+            jsxFile.write(`
+const ${componentName} = () => {
+    return (
+    <div>
+    
+    </div>
+    )
+}
+
+export default ${componentName} 
+           `);
+
             // Important to close the stream when you're ready
             jsxFile.end();
         });
+    }
+
+    //Write Scss File
+    if(componentData.files.includes("scss")){
+        var scssFile = fs.createWriteStream(`${currentDir}/${componentName}.scss`);
+    }
+    
+    if(componentData.files.includes("css")){
+        var scssFile = fs.createWriteStream(`${currentDir}/${componentName}.css`);
+    }
+    
+    if(componentData.files.includes("test")){
+        var testFile = fs.createWriteStream(`${currentDir}/${componentName}.test.${fileEnding}`);
     }
 
     return true;

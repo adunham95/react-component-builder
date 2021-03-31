@@ -6,6 +6,7 @@ const { getVersion} = require("./getMeta")
 program
     .version(getVersion())
     .option('-d, --debug', 'debugging')
+    .option('-t, --test', 'Added for testing to bypass questions')
 
 program.parse(process.argv);
 
@@ -38,7 +39,17 @@ const questions = [
 const options = program.opts();
 if (options.debug) console.log(options);
 
-inquirer
+if(options.test){
+    const testData = {
+        name: 'Test Component',
+        path: '/src/components',
+        fileType: 'javascript',
+        files: [ 'jsx','scss' ]
+      }
+    buildComponent(testData, true)
+}
+else{
+    inquirer
     .prompt(questions)
     .then(answers => {
         // console.log(answers)
@@ -52,3 +63,5 @@ inquirer
         // Something else went wrong
         }
     });
+
+}
