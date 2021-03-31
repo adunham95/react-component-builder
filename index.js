@@ -5,7 +5,6 @@ const { getVersion} = require("./getMeta")
 program
     .version(getVersion())
     .option('-d, --debug', 'debugging')
-    .option('-p, --path <type>', 'path to new component');
 
 program.parse(process.argv);
 
