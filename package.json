@@ -1,6 +1,6 @@
 {
   "name": "react-component-builder",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "A cli tool for building react components",
   "main": "index.js",
   "author": "Adrian Dunham",
