@@ -18,6 +18,7 @@ const questions = [
     {
         type : "input",
         name : `${comp}.path`,
+        default: "/src/components",
         message : "Component Path: "
     },
     {
@@ -28,7 +29,7 @@ const questions = [
     },
     {
         type : "checkbox",
-        name : `${comp}.path`,
+        name : `${comp}.files`,
         message : "Component Files: ",
         choices: [ {name: "jsx", checked: true},"test", "scss", "css" ]
     },
