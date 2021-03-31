@@ -44,7 +44,7 @@ if(options.test){
         name: 'Test Component',
         path: '/src/components',
         fileType: 'javascript',
-        files: [ 'jsx','scss' ]
+        files: [ 'jsx','scss','test' ]
       }
     buildComponent(testData, true)
 }

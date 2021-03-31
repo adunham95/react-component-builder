@@ -8,7 +8,7 @@ function buildComponent(componentData, debug=false) {
     let componentName = ""
     const words = componentData.name.split(" ");
     for (let i = 0; i < words.length; i++) {
-        componentName += words[i][0].toUpperCase() + words[i].substr(1);
+        componentName += words[i][0].toUpperCase() + words[i].substr(1).toLowerCase();
     }
     const currentDir = path.join(__dirname, `${componentData.path}/${componentName}`);
     if(debug) console.log(currentDir)
@@ -50,7 +50,7 @@ function buildComponent(componentData, debug=false) {
             jsxFile.write(`
 const ${componentName} = () => {
     return (
-    <div>
+    <div data-testid="${componentName.toLowerCase()}">
     
     </div>
     )
@@ -75,6 +75,26 @@ export default ${componentName}
     
     if(componentData.files.includes("test")){
         var testFile = fs.createWriteStream(`${currentDir}/${componentName}.test.${fileEnding}`);
+
+        const imports = `import React from 'react'\n import { render, fireEvent, screen } from '@testing-library/react'\n import { ${componentName} } from './${componentName}.js'`
+
+        const setUp = `\nconst setup = () => {
+    const utils = render(<${componentName} />)
+    const input = utils.getByTestId('${componentName.toLowerCase()}')
+    return {
+        input,
+        ...utils,\n}\n}`
+
+        const firstTest = `\ntest('renders ${componentName}', () => {
+    const { input } = setup();
+    expect(input).toBeInTheDocument();\n});`
+
+        testFile.write(imports);
+        testFile.write(setUp);
+        testFile.write(firstTest);
+
+        testFile.end();
+
     }
 
     return true;
