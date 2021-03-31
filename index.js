@@ -1,5 +1,6 @@
 const { program } = require('commander');
 const inquirer = require('inquirer');
+const { buildComponent } = require('./buildComponent');
 const { getVersion} = require("./getMeta")
 
 program
@@ -8,28 +9,27 @@ program
 
 program.parse(process.argv);
 
-const comp = "component"
 const questions = [
     {
         type : "input",
-        name : `${comp}.name`,
+        name : `name`,
         message : "Component Name: "
     },
     {
         type : "input",
-        name : `${comp}.path`,
+        name : `path`,
         default: "/src/components",
         message : "Component Path: "
     },
     {
         type : "list",
-        name : `${comp}.fileType`,
+        name : `fileType`,
         message : "File Type: ",
         choices: [{name:"javascript", checked: true}, "typescript"]
     },
     {
         type : "checkbox",
-        name : `${comp}.files`,
+        name : `files`,
         message : "Component Files: ",
         choices: [ {name: "jsx", checked: true},"test", "scss", "css" ]
     },
@@ -41,7 +41,8 @@ if (options.debug) console.log(options);
 inquirer
     .prompt(questions)
     .then(answers => {
-        console.log(answers)
+        // console.log(answers)
+        buildComponent(answers, options.debug)
         // Use user feedback for... whatever!!
     })
     .catch(error => {
