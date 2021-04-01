@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A cli tool for building react components",
   "main": "index.js",
+  "bin": "index.js",
   "author": "Adrian Dunham",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
