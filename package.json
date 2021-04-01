@@ -3,7 +3,9 @@
   "version": "1.0.3",
   "description": "A cli tool for building react components",
   "main": "index.js",
-  "bin": "cli.js",
+  "bin": {
+    "react-component": "cli.js"
+  },
   "author": "Adrian Dunham",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
