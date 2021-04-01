@@ -1,5 +1,5 @@
 {
-  "name": "react-component-builder",
+  "name": "@adunham95/react-component-builder",
   "version": "1.0.0",
   "description": "A cli tool for building react components",
   "main": "index.js",
@@ -12,5 +12,12 @@
   "dependencies": {
     "commander": "^7.2.0",
     "inquirer": "^8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adunham95/react-component-builder"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/adunham95"
   }
 }
