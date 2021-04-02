@@ -1,6 +1,6 @@
 {
   "name": "@adunham95/react-component-builder",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A cli tool for building react components",
   "main": "index.js",
   "bin": {

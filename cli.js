@@ -1,6 +1,6 @@
-#!/usr/bin/env node
+#! /usr/bin/env node
 
 "use strict";
 
-var fn = require("./");
+var fn = require("./index.js");
 fn();
